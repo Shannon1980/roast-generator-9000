@@ -1,0 +1,19 @@
+{
+  "name": "Roast Generator 9000",
+  "short_name": "Roast 9000",
+  "description": "Type a name. Get absolutely cooked. (Lovingly.)",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#6D28D9",
+  "theme_color": "#6D28D9",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

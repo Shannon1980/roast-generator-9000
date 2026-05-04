@@ -4,20 +4,43 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Roast Generator 9000</title>
+<meta name="description" content="Type a name. Get absolutely cooked. (Lovingly.) A classroom-friendly roast generator with 75+ gentle burns." />
+<link rel="canonical" href="https://shannon1980.github.io/roast-generator-9000/" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Roast Generator 9000" />
+<meta property="og:description" content="Type a name. Get absolutely cooked. (Lovingly.)" />
+<meta property="og:url" content="https://shannon1980.github.io/roast-generator-9000/" />
+<meta property="og:image" content="https://shannon1980.github.io/roast-generator-9000/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Roast Generator 9000" />
+<meta name="twitter:description" content="Type a name. Get absolutely cooked. (Lovingly.)" />
+<meta name="twitter:image" content="https://shannon1980.github.io/roast-generator-9000/og-image.png" />
+
+<meta name="theme-color" content="#6D28D9" />
+<link rel="manifest" href="manifest.json" />
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="apple-touch-icon" href="favicon.svg" />
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; }
-  html, body { height: 100%; margin: 0; }
+  html, body { margin: 0; }
+  html { min-height: 100%; }
 
   body {
     font-family: "Fredoka", system-ui, -apple-system, "Segoe UI", sans-serif;
     font-weight: 600;
     color: #2A0F4F;
-    overflow: hidden;
+    min-height: 100vh;
     background: linear-gradient(135deg, #6D28D9, #EC4899, #FBBF24, #EC4899, #6D28D9);
     background-size: 400% 400%;
+    background-attachment: fixed;
     animation: bgShift 18s ease-in-out infinite;
     display: flex;
     align-items: center;
@@ -121,7 +144,7 @@
   .subtitle {
     font-size: 20px;
     font-weight: 600;
-    color: #6B5685;
+    color: #5A4675;
     margin: 0 0 36px;
   }
 
@@ -162,7 +185,7 @@
     outline: none;
     transition: border-color .2s, background .2s, box-shadow .2s, transform .2s;
   }
-  input[type="text"]::placeholder { color: #B49ED1; font-weight: 600; }
+  input[type="text"]::placeholder { color: #8E76B0; font-weight: 600; }
   input[type="text"]:focus {
     border-color: #EC4899;
     background: #FFFFFF;
@@ -193,6 +216,10 @@
     will-change: transform;
   }
   button:active { transform: translateY(1px) scale(0.99); }
+  button:focus-visible {
+    outline: 3px solid #FBBF24;
+    outline-offset: 3px;
+  }
 
   .btn-primary {
     font-size: 28px;
@@ -271,7 +298,7 @@
     gap: 16px;
     margin-top: 20px;
     font-size: 16px;
-    color: #6B5685;
+    color: #5A4675;
     font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -288,7 +315,7 @@
     border: 3px dashed #E9DEFF;
     border-radius: 22px;
     padding: 36px 24px;
-    color: #8A75A8;
+    color: #6B5685;
     font-size: 22px;
     font-weight: 600;
   }
@@ -297,13 +324,43 @@
   .footer-note {
     margin-top: 28px;
     font-size: 14px;
-    color: #8A75A8;
+    color: #5A4675;
     letter-spacing: 0.1em;
     text-transform: uppercase;
   }
+  .footer-note a {
+    color: #6D28D9;
+    text-decoration: none;
+    border-bottom: 2px dotted #E0CFFA;
+  }
+  .footer-note a:hover { border-bottom-color: #EC4899; }
+
+  .toast {
+    position: fixed;
+    left: 50%;
+    bottom: 32px;
+    transform: translateX(-50%) translateY(20px);
+    background: #2A0F4F;
+    color: #FFF;
+    padding: 14px 22px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 0.06em;
+    box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .25s, transform .25s;
+    z-index: 10;
+  }
+  .toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
 
   @media (max-width: 640px) {
-    .card { padding: 36px 24px; }
+    body { padding: 16px; }
+    .card { padding: 32px 22px; }
     h1 { font-size: 40px; }
     .btn-primary { font-size: 22px; padding: 16px 22px; }
     .btn-secondary { font-size: 18px; padding: 14px 18px; }
@@ -333,7 +390,7 @@
   <p class="subtitle">Type a name. Get absolutely cooked. (Lovingly.)</p>
 
   <div class="field">
-    <label for="nameInput">Your name</label>
+    <label for="nameInput">Name to roast</label>
     <div class="input-wrap">
       <span class="emoji" aria-hidden="true">🔥</span>
       <input id="nameInput" type="text" placeholder="e.g. Jordan" autocomplete="off" maxlength="40" />
@@ -343,6 +400,7 @@
   <div class="btn-row">
     <button id="roastBtn" class="btn-primary">🔥 ROAST ME</button>
     <button id="againBtn" class="btn-secondary" style="display:none;">🎲 ROAST AGAIN</button>
+    <button id="shareBtn" class="btn-secondary" style="display:none;">📋 SHARE</button>
   </div>
 
   <div class="roast-stage" id="roastStage">
@@ -352,8 +410,14 @@
     </div>
   </div>
 
-  <div class="footer-note">Classroom Friendly · Volume 9000</div>
+  <div class="footer-note">
+    Classroom Friendly · Volume 9000 ·
+    <a href="mailto:shannon@govorentoe.com?subject=Roast%20Generator%209000%20feedback">Feedback</a> ·
+    <a href="https://github.com/Shannon1980/roast-generator-9000" target="_blank" rel="noopener">GitHub</a>
+  </div>
 </main>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
 
 <script>
 (function () {
@@ -382,21 +446,105 @@
     "{name} treats Capri Suns like a competitive sport.",
     "{name} has a snack stash. We all know about the snack stash.",
     "{name} rates every movie 'pretty good' even when it's terrible.",
-    "{name} has tried to befriend exactly one bug. It did not go well."
+    "{name} has tried to befriend exactly one bug. It did not go well.",
+    "{name} has a 'lucky' eraser. It has erased nothing.",
+    "{name} insists they 'don't have a favorite' but the answer is dinosaurs.",
+    "{name}'s lunchbox has crumbs from last week. Possibly older.",
+    "{name} brings a sweater EVERYWHERE. Even in July.",
+    "{name} thinks they're fast. They are medium.",
+    "{name} has a notebook covered in stickers and zero notes.",
+    "{name}'s favorite color changes every Tuesday.",
+    "{name} can recite every Pokémon type but not the multiplication tables.",
+    "{name} has a pencil case organized by ZERO logic.",
+    "{name} brings up Minecraft in conversations about the weather.",
+    "{name} once held in a sneeze for 20 seconds and is still proud.",
+    "{name} has a stuffed animal they pretend they don't sleep with anymore.",
+    "{name} would WIN at staring contests if blinking weren't a thing.",
+    "{name}'s socks never match. They claim it's a choice.",
+    "{name} has a 'best friend' rotation and we're all on the schedule.",
+    "{name} pretends not to hear their parents and we KNOW the volume on those headphones.",
+    "{name} thinks they invented the joke. They did not.",
+    "{name} has a 'forever pencil' they refuse to sharpen.",
+    "{name} eats popcorn one piece at a time. WHY.",
+    "{name} has tried to do a cartwheel for 4 years running.",
+    "{name} loses at Uno and pretends they 'let you win.'",
+    "{name} owns three flashlights. None work.",
+    "{name} insists they're 'almost done' with their book. They started in October.",
+    "{name} has a snack hierarchy and Goldfish are #1, sorry not sorry.",
+    "{name} got really into a hobby for 9 days. It's over now.",
+    "{name} has a 'good seat' on the bus and will fight for it.",
+    "{name} thinks they're funnier in group projects than they are.",
+    "{name}'s shoes squeak in a specific way that everyone knows by now.",
+    "{name} has a 'system' for stickers. The system is hoarding.",
+    "{name} drinks chocolate milk like it's a sport.",
+    "{name} has the same 4 dance moves at every single party.",
+    "{name} pretends to read the back of cereal boxes. They're just stalling.",
+    "{name} owns a watch that doesn't tell time. It's 'for the look.'",
+    "{name} has a hat that survived ONE pool day. RIP.",
+    "{name} has a backpack that's definitely heavier than they are.",
+    "{name} insists they 'studied.' We saw the YouTube tab open.",
+    "{name} once won a participation ribbon and brought it up in February.",
+    "{name} has a 'best handwriting' that only appears on the first 3 lines.",
+    "{name} can fold a paper airplane that immediately nosedives. Every time.",
+    "{name} has a stuffed animal collection with strict bedtime rules.",
+    "{name} brings up their dog in conversations about math homework.",
+    "{name} has a 'comfort hoodie' that hasn't seen a washer this season.",
+    "{name} can name all the colors of Skittles but skips green.",
+    "{name} owns 7 water bottles. Uses one. Loses three. Don't ask about the rest.",
+    "{name} thinks they're a fast reader. They're skipping pages, we see you.",
+    "{name} has a sock with a hole. They're keeping it 'just in case.'",
+    "{name} has tried bubble gum tricks and bit their lip every time.",
+    "{name} keeps a snack in their desk and still acts surprised about it.",
+    "{name}'s 'short story' is 19 minutes long and we're at minute 7.",
+    "{name} would rather rewatch a series finale than learn something new.",
+    "{name} talks to plants. The plants are doing... fine. Probably."
   ];
 
-  const $name  = document.getElementById('nameInput');
-  const $roast = document.getElementById('roastBtn');
-  const $again = document.getElementById('againBtn');
-  const $stage = document.getElementById('roastStage');
-  const $empty = document.getElementById('emptyState');
+  // Lightweight name filter — strips anything that isn't a letter/space/hyphen/apostrophe.
+  // Catches the obvious low-effort mischief in a classroom; not a security boundary.
+  const BLOCKED = /\b(f+u+c+k+|s+h+i+t+|b+i+t+c+h+|a+s+s+h+o+l+e+|d+a+m+n+|c+r+a+p+)\w*/i;
 
+  const $name   = document.getElementById('nameInput');
+  const $roast  = document.getElementById('roastBtn');
+  const $again  = document.getElementById('againBtn');
+  const $share  = document.getElementById('shareBtn');
+  const $stage  = document.getElementById('roastStage');
+  const $empty  = document.getElementById('emptyState');
+  const $toast  = document.getElementById('toast');
+
+  let deck = [];
   let lastIndex = -1;
+  let lastRoast = null;
+
+  function shuffle(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  }
+
+  function refillDeck() {
+    deck = shuffle(ROASTS.map((_, i) => i));
+    if (deck[0] === lastIndex && deck.length > 1) {
+      [deck[0], deck[1]] = [deck[1], deck[0]];
+    }
+  }
+
+  function pickRoastIndex() {
+    if (!deck.length) refillDeck();
+    const idx = deck.shift();
+    lastIndex = idx;
+    return idx;
+  }
 
   function sanitizeName(raw) {
-    const trimmed = (raw || '').trim();
-    if (!trimmed) return '';
-    return trimmed.charAt(0).toUpperCase() + trimmed.slice(1);
+    let s = (raw || '').trim();
+    s = s.replace(/[^\p{L}\s'\-]/gu, '');
+    s = s.replace(/\s+/g, ' ').trim();
+    if (!s) return '';
+    if (BLOCKED.test(s)) return 'Mystery Friend';
+    return s.split(' ').map(w => w ? w.charAt(0).toUpperCase() + w.slice(1) : w).join(' ');
   }
 
   function escapeHTML(s) {
@@ -405,18 +553,10 @@
     }[c]));
   }
 
-  function pickRoast() {
-    if (ROASTS.length <= 1) return 0;
-    let idx;
-    do { idx = Math.floor(Math.random() * ROASTS.length); }
-    while (idx === lastIndex);
-    lastIndex = idx;
-    return idx;
-  }
-
   function renderRoast(name) {
-    const idx = pickRoast();
+    const idx = pickRoastIndex();
     const text = ROASTS[idx].replaceAll('{name}', name);
+    lastRoast = text;
     const safeText = escapeHTML(text);
     const safeName = escapeHTML(name);
 
@@ -441,11 +581,41 @@
     el.focus();
   }
 
+  function showToast(msg) {
+    $toast.textContent = msg;
+    $toast.classList.add('show');
+    clearTimeout(showToast._t);
+    showToast._t = setTimeout(() => $toast.classList.remove('show'), 1800);
+  }
+
+  function shareRoast() {
+    if (!lastRoast) return;
+    const name = sanitizeName($name.value);
+    const url = new URL(window.location.href);
+    url.search = name ? '?name=' + encodeURIComponent(name) : '';
+    const shareText = lastRoast + '\n\n— Roast Generator 9000\n' + url.toString();
+
+    if (navigator.share) {
+      navigator.share({
+        title: 'Roast Generator 9000',
+        text: lastRoast + '\n— Roast Generator 9000',
+        url: url.toString()
+      }).catch(() => {/* user dismissed */});
+    } else if (navigator.clipboard) {
+      navigator.clipboard.writeText(shareText)
+        .then(() => showToast('📋 Copied to clipboard!'))
+        .catch(() => showToast('Could not copy — try selecting text'));
+    } else {
+      showToast('Sharing not supported on this browser');
+    }
+  }
+
   $roast.addEventListener('click', () => {
     const name = sanitizeName($name.value);
     if (!name) { bump($name); return; }
     if ($empty && $empty.parentNode) $empty.remove();
     $again.style.display = 'inline-block';
+    $share.style.display = 'inline-block';
     renderRoast(name);
   });
 
@@ -455,6 +625,8 @@
     renderRoast(name);
   });
 
+  $share.addEventListener('click', shareRoast);
+
   $name.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
       e.preventDefault();
@@ -462,12 +634,23 @@
     }
   });
 
-  // Confetti — 30 pieces per burst, simple physics on canvas
+  // Permalink: ?name=Jordan pre-fills, ?name=Jordan&go=1 auto-roasts
+  const params = new URLSearchParams(window.location.search);
+  const seedName = params.get('name');
+  if (seedName) {
+    $name.value = seedName.slice(0, 40);
+    if (params.get('go') === '1') {
+      window.requestAnimationFrame(() => $roast.click());
+    }
+  }
+
+  // Confetti — burst on each roast, loop pauses when idle
   const canvas = document.getElementById('confetti');
   const ctx = canvas.getContext('2d');
   let dpr = Math.max(1, window.devicePixelRatio || 1);
   let W = 0, H = 0;
   const pieces = [];
+  let looping = false;
 
   function resize() {
     dpr = Math.max(1, window.devicePixelRatio || 1);
@@ -484,7 +667,7 @@
 
   function fireConfetti() {
     const cx = W / 2;
-    const cy = H / 2 - 40;
+    const cy = Math.min(H / 2 - 40, 240);
     for (let i = 0; i < 30; i++) {
       const angle = Math.random() * Math.PI * 2;
       const speed = 6 + Math.random() * 9;
@@ -501,6 +684,10 @@
         life: 0,
         maxLife: 110 + Math.random() * 40
       });
+    }
+    if (!looping) {
+      looping = true;
+      requestAnimationFrame(tick);
     }
   }
 
@@ -535,11 +722,16 @@
         pieces.splice(i, 1);
       }
     }
-    requestAnimationFrame(tick);
+    if (pieces.length > 0) {
+      requestAnimationFrame(tick);
+    } else {
+      looping = false;
+    }
   }
-  tick();
 
-  window.addEventListener('load', () => $name.focus());
+  window.addEventListener('load', () => {
+    if (!seedName) $name.focus();
+  });
 })();
 </script>
 
