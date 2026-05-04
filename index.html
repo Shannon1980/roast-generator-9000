@@ -294,7 +294,7 @@
   .roast-meta {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     gap: 16px;
     margin-top: 20px;
     font-size: 16px;
@@ -302,12 +302,6 @@
     font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-  }
-  .roast-meta .pill {
-    background: #F4ECFF;
-    color: #6D28D9;
-    padding: 8px 14px;
-    border-radius: 999px;
   }
 
   .empty-state {
@@ -566,7 +560,6 @@
         ${safeText}
         <span class="corner br" aria-hidden="true">💀</span>
         <div class="roast-meta">
-          <span class="pill">Roast #${String(idx + 1).padStart(2,'0')} / ${ROASTS.length}</span>
           <span>Target: ${safeName}</span>
         </div>
       </div>
