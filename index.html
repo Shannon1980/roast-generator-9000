@@ -841,6 +841,7 @@
   const $toast  = document.getElementById('toast');
 
   let deck = [];
+  let seen = new Set();
   let lastIndex = -1;
   let lastRoast = null;
 
@@ -852,16 +853,19 @@
     return arr;
   }
 
-  function refillDeck() {
+  function refillDeck(isReset) {
+    seen.clear();
     deck = shuffle(ROASTS.map((_, i) => i));
     if (deck[0] === lastIndex && deck.length > 1) {
       [deck[0], deck[1]] = [deck[1], deck[0]];
     }
+    if (isReset) showToast('🔄 All ' + ROASTS.length + ' roasts seen! Reshuffling…');
   }
 
   function pickRoastIndex() {
-    if (!deck.length) refillDeck();
+    if (!deck.length) refillDeck(true);
     const idx = deck.shift();
+    seen.add(idx);
     lastIndex = idx;
     return idx;
   }
