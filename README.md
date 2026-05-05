@@ -2,7 +2,7 @@
 
 > Type a name. Get absolutely cooked. (Lovingly.)
 
-A classroom-friendly roast generator with 76 gentle burns, animated gradients, and confetti. Single static HTML file — zero build step.
+A classroom-friendly roast generator with 398 gentle burns, animated gradients, and confetti. Single static HTML file — zero build step.
 
 **Live:** https://shannon1980.github.io/roast-generator-9000/
 
@@ -10,7 +10,7 @@ A classroom-friendly roast generator with 76 gentle burns, animated gradients, a
 
 ## Features
 
-- 76 classroom-friendly roasts that target quirky habits, not people
+- 398 classroom-friendly roasts that target quirky habits, not people
 - Deck-shuffle randomizer (every roast plays before any repeats)
 - Confetti burst on each roast (pauses when idle to save battery)
 - Web Share API + clipboard fallback for sharing
