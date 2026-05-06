@@ -323,18 +323,6 @@
   .roast-box .corner.tl { top: -18px; left: -10px; transform: rotate(-18deg); }
   .roast-box .corner.br { bottom: -18px; right: -10px; transform: rotate(14deg); }
 
-  .roast-meta {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-    margin-top: 20px;
-    font-size: 16px;
-    color: #5A4675;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
 
   .empty-state {
     background: #FAFAFE;
@@ -2047,9 +2035,6 @@
         <span class="corner tl" aria-hidden="true">🔥</span>
         ${safeText}
         <span class="corner br" aria-hidden="true">💀</span>
-        <div class="roast-meta">
-          <span>Target: ${safeName}</span>
-        </div>
       </div>
     `;
     fireConfetti();
